@@ -14,7 +14,7 @@ class Student {
   final Address address;
 
   Student({
-   this.id,
+    this.id,
     required this.name,
     this.age,
     required this.nameCourses,
@@ -27,8 +27,9 @@ class Student {
       'id': id,
       'name': name,
       'age': age,
+      'nameCourses': nameCourses,
       'courses': courses.map((curso) => curso.toMap()).toList(),
-      'adress': address.toString(),
+      'adress': address.toMap(),
     };
     if (age != null) {
       map['age'] = age;
@@ -42,10 +43,13 @@ class Student {
     return Student(
       id: map['id'] ?? 0,
       name: map['name'] ?? '',
-      age: map['age'] ,
-      nameCourses: List<String>.from((map['nameCourses']?? <String>[])),
-      address: Address.fromMap(map['address']?? <String, dynamic>{}),
-      courses: map['courses']?.map<Course>((cursoMap)=>Course.fromMap(cursoMap)).toList()??<Course>[],
+      age: map['age'],
+      nameCourses: List<String>.from((map['nameCourses'] ?? <String>[])),
+      address: Address.fromMap(map['address'] ?? <String, dynamic>{}),
+      courses: map['courses']
+              ?.map<Course>((cursoMap) => Course.fromMap(cursoMap))
+              .toList() ??
+          <Course>[],
     );
   }
   factory Student.fromJson(String json) => Student.fromMap(jsonDecode(json));

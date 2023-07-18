@@ -24,9 +24,9 @@ class Course{
 
   factory Course.fromMap(Map<String, dynamic> map) {
     return Course(
-      id: map['id'],
-      name: map['name'],
-      isStudents: map['isStudents'],
+      id: map['id'] ?? 0,
+      name: map['name']?? '',
+      isStudents: map['isStudents']?? false,
     );
   }
 

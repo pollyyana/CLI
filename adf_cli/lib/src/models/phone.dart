@@ -19,8 +19,8 @@ class Phone {
 
   factory Phone.fromMap(Map<String, dynamic> map) {
     return Phone(
-      ddd: map['ddd'],
-      phone: map['phone'],
+      ddd: map['ddd'] ?? 0,
+      phone: map['phone'] ?? '',
     );
   }
 
